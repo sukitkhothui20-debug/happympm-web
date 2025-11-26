@@ -6,59 +6,59 @@ const NewsArticles = ({ language, t }) => {
 
   const mainNews = {
     id: 1,
-    title: "26 YEARS IGNITE FUTURE TOGETHER",
-    subtitle: "INFINITE FUTURE TOGETHER\nIgnite success from 3 stages across Thailand towards a limitless future.",
+    title: t.newsArticles.articles.mainNews.title,
+    subtitle: t.newsArticles.articles.mainNews.subtitle,
     date: "5 months ago",
     image: "/images/news-articles/26 years.jpg",
-    tag: "News",
+    tag: t.newsArticles.articles.mainNews.tag,
   };
 
   const articles = [
     {
       id: 2,
-      title: "Open House to new opportunities that AI-era leaders can't miss! HAPPY MPM OPEN HOUSE meets CEO and CMO.",
+      title: t.newsArticles.articles.article1.title,
       date: "5 months ago",
       category: "Events",
       image: "/images/news-articles/Open House.jpg",
     },
     {
       id: 3,
-      title: "Congratulations to all who qualified! Langkawi Island Voyage – June 68",
+      title: t.newsArticles.articles.article2.title,
       date: "5 months ago",
       category: "Business",
       image: "/images/news-articles/Congratulations.jpg",
     },
     {
       id: 4,
-      title: "We express our deepest condolences to the families of those who have passed away in the Cambodia incident.",
+      title: t.newsArticles.articles.article3.title,
       date: "5 months ago",
       category: "Announcements",
       image: "/images/news-articles/We express.jpg",
     },
     {
       id: 5,
-      title: "Happy MPM Grand Expo at the Northeastern Business Center and Lao",
+      title: t.newsArticles.articles.article4.title,
       date: "5 months ago",
       category: "Events",
       image: "/images/news-articles/Happy MPM.jpg",
     },
     {
       id: 6,
-      title: "New Training Program Launched for Business Development",
+      title: t.newsArticles.articles.article5.title,
       date: "4 months ago",
       category: "Training",
       image: "/images/news-articles/Happy MPM.jpg",
     },
     {
       id: 7,
-      title: "Happy MPM Celebrates 26 Years of Excellence and Growth",
+      title: t.newsArticles.articles.article6.title,
       date: "4 months ago",
       category: "Events",
       image: "/images/news-articles/26 years.jpg",
     },
     {
       id: 8,
-      title: "Business Opportunity - Join Our Growing Community",
+      title: t.newsArticles.articles.article7.title,
       date: "4 months ago",
       category: "Business",
       image: "/images/news-articles/Open House.jpg",
@@ -69,14 +69,14 @@ const NewsArticles = ({ language, t }) => {
     ? articles 
     : articles.filter(article => article.category.toLowerCase() === activeTab.toLowerCase());
 
-  const categories = ["All", "Events", "Business", "Training", "Announcements"];
+  const categories = [t.newsArticles.allNews, t.newsArticles.events, t.newsArticles.business, t.newsArticles.training, t.newsArticles.announcements];
 
   return (
     <section className="news-articles-section">
       <div className="container">
         {/* Header */}
         <div className="news-articles-header">
-          <h1 className="section-title">{language === "th" ? "ข่าว & บทความ" : "News & Articles"}</h1>
+          <h1 className="section-title">{t.newsArticles.title}</h1>
         </div>
 
         <div className="news-articles-container">

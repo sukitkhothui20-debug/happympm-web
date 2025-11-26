@@ -39,7 +39,7 @@ const ContactUs = ({ language, t }) => {
   return (
     <section className="contact-us-section">
       <div className="container">
-        <h1 className="contact-us-title">Contact Us</h1>
+        <h1 className="contact-us-title">{t.contactUs.title}</h1>
 
         <div className="contact-us-wrapper">
           {/* Left Side - Map & Form */}
@@ -48,7 +48,7 @@ const ContactUs = ({ language, t }) => {
             <div className="contact-map">
               <iframe
                 title="Happy MPM Location"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3875.9480951156636!2d100.57452!3d13.756331!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x311d62f5f5f5f5f5%3A0x1234567890abcdef!2sHappy%20MPM!5e0!3m2!1sth!2sth!4v1234567890123"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3875.7559159394!2d100.55029!3d13.76584!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x311d6147b63ccccc%3A0x123456789!2sNoble%20House%20Phayathai%20Building%2C%20Phayathai%20Rd%2C%20Bangkok!5e0!3m2!1sth!2sth!4v1700000000000"
                 width="100%"
                 height="100%"
                 style={{ border: 0, borderRadius: "8px" }}
@@ -60,12 +60,12 @@ const ContactUs = ({ language, t }) => {
 
             {/* Send Message Form */}
             <div className="send-message-section">
-              <h2 className="send-message-title">Send us a message</h2>
+              <h2 className="send-message-title">{t.contactUs.sendMessage}</h2>
 
               <form onSubmit={handleSubmit} className="contact-form">
                 <div className="form-row">
                   <div className="form-group">
-                    <label>First Name</label>
+                    <label>{t.contactUs.firstName}</label>
                     <input
                       type="text"
                       name="firstName"
@@ -76,7 +76,7 @@ const ContactUs = ({ language, t }) => {
                     />
                   </div>
                   <div className="form-group">
-                    <label>Last Name</label>
+                    <label>{t.contactUs.lastName}</label>
                     <input
                       type="text"
                       name="lastName"
@@ -90,7 +90,7 @@ const ContactUs = ({ language, t }) => {
 
                 <div className="form-row">
                   <div className="form-group">
-                    <label>Email</label>
+                    <label>{t.contactUs.email}</label>
                     <input
                       type="email"
                       name="email"
@@ -101,7 +101,7 @@ const ContactUs = ({ language, t }) => {
                     />
                   </div>
                   <div className="form-group">
-                    <label>Contact Detail</label>
+                    <label>{t.contactUs.phone}</label>
                     <div className="phone-input">
                       <select
                         name="countryCode"
@@ -126,7 +126,7 @@ const ContactUs = ({ language, t }) => {
                 </div>
 
                 <div className="form-group full-width">
-                  <label>Last Message</label>
+                  <label>{t.contactUs.message}</label>
                   <textarea
                     name="message"
                     placeholder="Enter your message"
@@ -138,7 +138,7 @@ const ContactUs = ({ language, t }) => {
                 </div>
 
                 <button type="submit" className="btn-send-message">
-                  Send Message
+                  {t.contactUs.sendButton}
                 </button>
               </form>
             </div>
@@ -152,7 +152,7 @@ const ContactUs = ({ language, t }) => {
                   <FiHeadphones size={32} />
                 </div>
                 <h3 className="contact-info-title">
-                  Hi! We're always here to help you.
+                  {t.contactUs.contactInfo}
                 </h3>
               </div>
 
@@ -162,7 +162,7 @@ const ContactUs = ({ language, t }) => {
                   <FiPhone size={24} />
                 </div>
                 <div className="contact-text">
-                  <span className="label">Phone number:</span>
+                  <span className="label">{t.contactUs.phoneLabel}</span>
                   <span className="value">02-642-5425</span>
                 </div>
               </div>
@@ -173,7 +173,7 @@ const ContactUs = ({ language, t }) => {
                   <FiMail size={24} />
                 </div>
                 <div className="contact-text">
-                  <span className="label">Email:</span>
+                  <span className="label">{t.contactUs.emailLabel}</span>
                   <span className="value"><a href="mailto:info@happympm.com">info@happympm.com</a></span>
                 </div>
               </div>
@@ -184,14 +184,14 @@ const ContactUs = ({ language, t }) => {
                   <FiClock size={24} />
                 </div>
                 <div className="contact-text">
-                  <span className="label">Business hours:</span>
-                  <span className="value">9:00 a.m. - 6:00 p.m. *Closed every Thursday</span>
+                  <span className="label">{t.contactUs.hoursLabel}</span>
+                  <span className="value">{t.contactUs.hours}</span>
                 </div>
               </div>
 
               {/* Social Media */}
               <div className="contact-social">
-                <span className="social-label">Connect with us</span>
+                <span className="social-label">{t.contactUs.connectWithUs}</span>
                 <div className="social-icons">
                   <a href="#" className="social-link" title="TikTok">
                     <span>🎵</span>
@@ -210,9 +210,9 @@ const ContactUs = ({ language, t }) => {
 
               {/* Other Branches */}
               <div className="other-branches">
-                <h4>Addresses of other branches nationwide</h4>
+                <h4>{t.contactUs.branches}</h4>
                 <div className="branch-box">
-                  <h5>Happy MPM Head Office</h5>
+                  <h5>{t.contactUs.headOffice}</h5>
                   <button className="btn-click">Click →</button>
                 </div>
               </div>

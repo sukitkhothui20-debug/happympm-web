@@ -6,12 +6,21 @@ import NewsArticles from "./components/NewsArticles/NewsArticles";
 import BusinessTools from "./components/BusinessTools/BusinessTools";
 import ContactUs from "./components/ContactUs/ContactUs";
 import Footer from "./components/Footer/Footer";
+import About from "./pages/About/About";
+import AwardsDetail from "./pages/AwardsDetail/AwardsDetail";
+import SocialActivityDetail from "./pages/SocialActivityDetail/SocialActivityDetail";
+import ExecutiveDetail from "./pages/ExecutiveDetail/ExecutiveDetail";
+import BusinessToolDetail from "./pages/BusinessToolDetail/BusinessToolDetail";
+
 
 function App() {
   const [language, setLanguage] = useState("en"); // 'th' or 'en'
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
   const [mobileLangDropdownOpen, setMobileLangDropdownOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState("home"); // 'home', 'about', 'awardsDetail', 'socialActivityDetail', 'executiveDetail', 'businessToolDetail'
+  const [socialActivityId, setSocialActivityId] = useState(1); // 1, 2, 3, or 4
+  const [businessToolId, setBusinessToolId] = useState(1); // 1-5 for tools
   const [mobileProductOpen, setMobileProductOpen] = useState(false);
   const [mobileBusinessOpen, setMobileBusinessOpen] = useState(false);
   const [desktopProductOpen, setDesktopProductOpen] = useState(false);
@@ -468,17 +477,38 @@ function App() {
     localStorage.setItem("introShown", "true");
   };
 
+  // Handle scroll to business-tools when returning from business tool detail
+  useEffect(() => {
+    if (currentPage === "home" && sessionStorage.getItem("scrollToBusinessTools")) {
+      sessionStorage.removeItem("scrollToBusinessTools");
+      setTimeout(() => {
+        const businessToolsSection = document.getElementById("business-tools");
+        if (businessToolsSection) {
+          businessToolsSection.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+    }
+  }, [currentPage]);
+
   return (
     <div className="page">
+      {currentPage === "about" && <About language={language} t={t} setCurrentPage={setCurrentPage} setLanguage={setLanguage} setSocialActivityId={setSocialActivityId} setBusinessToolId={setBusinessToolId} />}
+      {currentPage === "awardsDetail" && <AwardsDetail language={language} t={t} setCurrentPage={setCurrentPage} setLanguage={setLanguage} setBusinessToolId={setBusinessToolId} />}
+      {currentPage === "socialActivityDetail" && <SocialActivityDetail activity={socialActivityId} language={language} t={t} setCurrentPage={setCurrentPage} setLanguage={setLanguage} setSocialActivityId={setSocialActivityId} setBusinessToolId={setBusinessToolId} />}
+      {currentPage === "executiveDetail" && <ExecutiveDetail language={language} t={t} setCurrentPage={setCurrentPage} setLanguage={setLanguage} setBusinessToolId={setBusinessToolId} />}
+      {currentPage === "businessToolDetail" && <BusinessToolDetail toolId={businessToolId} language={language} t={t} setCurrentPage={setCurrentPage} setLanguage={setLanguage} setBusinessToolId={setBusinessToolId} />}
+
+      {currentPage === "home" && (
+      <>
       {/* TOP BAR */}
       {showIntro && <Intro onFinish={handleIntroFinish} />}
       <div className="top-bar">
         <div className="container top-bar-inner">
             <div className="top-left-links">
-            <a href="#">{t.topBar.startBusiness}</a>
-            <a href="#">{t.topBar.memberBenefits}</a>
-            <a href="#">{t.topBar.contact}</a>
-            <a href="#">{t.topBar.about}</a>
+            <a href="#join-business" onClick={(e) => { e.preventDefault(); document.getElementById('join-business')?.scrollIntoView({ behavior: 'smooth' }); }}>{t.topBar.startBusiness}</a>
+            <a href="#promotions" onClick={(e) => { e.preventDefault(); document.getElementById('promotions')?.scrollIntoView({ behavior: 'smooth' }); }}>{t.topBar.memberBenefits}</a>
+            <a href="#contact-us" onClick={(e) => { e.preventDefault(); document.getElementById('contact-us')?.scrollIntoView({ behavior: 'smooth' }); }}>{t.topBar.contact}</a>
+            <a href="#about" onClick={(e) => { e.preventDefault(); setCurrentPage("about"); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>{t.topBar.about}</a>
           </div>
           <div className="top-right-info">
             <span>{t.topBar.email} info@happympm.com</span>
@@ -533,7 +563,7 @@ function App() {
 
             {/* DESKTOP MENU */}
             <nav className="nav-center">
-              <a href="#" className="nav-link nav-link-active">
+              <a href="#" className="nav-link nav-link-active" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
                 {t.nav.home}
               </a>
 
@@ -579,23 +609,23 @@ function App() {
                     }
                   }}
                 >
-                  <a href="#" className="dropdown-item">{t.products.pollitin}</a>
-                  <a href="#" className="dropdown-item">
+                  <a href="#" className="dropdown-item" onClick={(e) => { e.preventDefault(); document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' }); setDesktopProductOpen(false); }}>{t.products.pollitin}</a>
+                  <a href="#" className="dropdown-item" onClick={(e) => { e.preventDefault(); document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' }); setDesktopProductOpen(false); }}>
                     {t.products.healthWellness}
                   </a>
-                  <a href="#" className="dropdown-item">
+                  <a href="#" className="dropdown-item" onClick={(e) => { e.preventDefault(); document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' }); setDesktopProductOpen(false); }}>
                     {t.products.beautyBody}
                   </a>
-                  <a href="#" className="dropdown-item">
+                  <a href="#" className="dropdown-item" onClick={(e) => { e.preventDefault(); document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' }); setDesktopProductOpen(false); }}>
                     {t.products.onlineMembership}
                   </a>
-                  <a href="#" className="dropdown-item">
+                  <a href="#" className="dropdown-item" onClick={(e) => { e.preventDefault(); document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' }); setDesktopProductOpen(false); }}>
                     {t.products.agriculture}
                   </a>
                 </div>
               </div>
 
-              <a href="#" className="nav-link">
+              <a href="#news-articles" className="nav-link" onClick={(e) => { e.preventDefault(); document.getElementById('news-articles')?.scrollIntoView({ behavior: 'smooth' }); }}>
                 {t.nav.news}
               </a>
 
@@ -615,9 +645,11 @@ function App() {
                 <button 
                   className="nav-link nav-link-button"
                   onClick={(e) => {
-                    // Only handle click on touch devices (hover not supported)
+                    e.preventDefault();
+                    // Scroll to business-tools section
+                    document.getElementById('business-tools')?.scrollIntoView({ behavior: 'smooth' });
+                    // On hover-enabled devices, keep dropdown open; on touch devices, toggle dropdown
                     if (!window.matchMedia("(hover: hover)").matches) {
-                      e.preventDefault();
                       setDesktopBusinessOpen(!desktopBusinessOpen);
                     }
                   }}
@@ -641,26 +673,30 @@ function App() {
                     }
                   }}
                 >
-                  <a href="#" className="dropdown-item">{t.businessperson.businessPlan}</a>
-                  <a href="#" className="dropdown-item">
+                  <a href="#" className="dropdown-item" onClick={(e) => { e.preventDefault(); setDesktopBusinessOpen(false); setBusinessToolId(1); setCurrentPage('businessToolDetail'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>{t.businessperson.businessPlan}</a>
+                  <a href="#" className="dropdown-item" onClick={(e) => { e.preventDefault(); setDesktopBusinessOpen(false); setBusinessToolId(2); setCurrentPage('businessToolDetail'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
                     {t.businessperson.onlineMarketing}
                   </a>
-                  <a href="#" className="dropdown-item">
+                  <a href="#" className="dropdown-item" onClick={(e) => { e.preventDefault(); setDesktopBusinessOpen(false); setBusinessToolId(3); setCurrentPage('businessToolDetail'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
                     {t.businessperson.calendar}
                   </a>
-                  <a href="#" className="dropdown-item">
+                  <a href="#" className="dropdown-item" onClick={(e) => { e.preventDefault(); setDesktopBusinessOpen(false); setBusinessToolId(4); setCurrentPage('businessToolDetail'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
                     {t.businessperson.promotions}
                   </a>
-                  <a href="#" className="dropdown-item">
+                  <a href="#" className="dropdown-item" onClick={(e) => { e.preventDefault(); setDesktopBusinessOpen(false); setBusinessToolId(5); setCurrentPage('businessToolDetail'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
                     {t.businessperson.lectureGuide}
                   </a>
-                  <a href="#" className="dropdown-item">
+                  <a href="#" className="dropdown-item" onClick={(e) => { e.preventDefault(); setDesktopBusinessOpen(false); setBusinessToolId(6); setCurrentPage('businessToolDetail'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
                     {t.businessperson.travelRewards}
                   </a>
                 </div>
               </div>
+              
+              <a href="#about" className="nav-link" onClick={(e) => { e.preventDefault(); setCurrentPage("about"); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
+                {t.nav.aboutUs || "About Us"}
+              </a>
 
-              <a href="#" className="nav-link">
+              <a href="#contact-us" className="nav-link" onClick={(e) => { e.preventDefault(); setCurrentPage("home"); document.getElementById('contact-us')?.scrollIntoView({ behavior: 'smooth' }); }}>
                 {t.nav.contactUs}
               </a>
             </nav>
@@ -668,8 +704,8 @@ function App() {
 
           {/* DESKTOP BUTTONS */}
           <div className="nav-right">
-            <button className="btn-outline">{t.nav.onClassroom}</button>
-            <button className="btn-solid">{t.nav.logIn}</button>
+            <a href="https://www.happympm.com/EROOM/form-login.php" target="_blank" rel="noopener noreferrer" className="btn-outline">{t.nav.onClassroom}</a>
+            <a href="https://www.myhmpm.com/member/index.php" target="_blank" rel="noopener noreferrer" className="btn-solid">{t.nav.logIn}</a>
           </div>
 
           {/* HAMBURGER (MOBILE ONLY) */}
@@ -750,25 +786,24 @@ function App() {
           <nav className="mobile-nav-list">
             <button 
               className={`mobile-link ${activeMobileLink === "HOME PAGE" ? "mobile-link-active" : ""}`}
-              onClick={() => setActiveMobileLink("HOME PAGE")}
+              onClick={() => { setActiveMobileLink("HOME PAGE"); closeMobileMenu(); setCurrentPage("home"); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
             >
               {t.mobile.homePage}
-            </button>
-
-            <button 
-              className={`mobile-link ${activeMobileLink === "ABOUT US" ? "mobile-link-active" : ""}`}
-              onClick={() => setActiveMobileLink("ABOUT US")}
-            >
-              {t.mobile.aboutUs}
             </button>
 
             {/* PRODUCT DROPDOWN (MOBILE) */}
             <div className="mobile-dropdown">
               <button
                 className="mobile-link"
-                onClick={() =>
-                  setMobileProductOpen((prev) => !prev)
-                }
+                onClick={() => {
+                  // If dropdown is already open, scroll to products instead
+                  if (mobileProductOpen) {
+                    closeMobileMenu();
+                    document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' });
+                  } else {
+                    setMobileProductOpen(true);
+                  }
+                }}
               >
                 {t.mobile.product} ▾
               </button>
@@ -777,19 +812,19 @@ function App() {
                   mobileProductOpen ? "open" : ""
                 }`}
               >
-                <button className="mobile-dropdown-item">
+                <button className="mobile-dropdown-item" onClick={() => { closeMobileMenu(); document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' }); }}>
                   {t.products.pollitin}
                 </button>
-                <button className="mobile-dropdown-item">
+                <button className="mobile-dropdown-item" onClick={() => { closeMobileMenu(); document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' }); }}>
                   {t.products.healthWellness}
                 </button>
-                <button className="mobile-dropdown-item">
+                <button className="mobile-dropdown-item" onClick={() => { closeMobileMenu(); document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' }); }}>
                   {t.products.beautyBody}
                 </button>
-                <button className="mobile-dropdown-item">
+                <button className="mobile-dropdown-item" onClick={() => { closeMobileMenu(); document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' }); }}>
                   {t.products.onlineMembership}
                 </button>
-                <button className="mobile-dropdown-item">
+                <button className="mobile-dropdown-item" onClick={() => { closeMobileMenu(); document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' }); }}>
                   {t.products.agriculture}
                 </button>
               </div>
@@ -806,9 +841,15 @@ function App() {
             <div className="mobile-dropdown">
               <button
                 className="mobile-link"
-                onClick={() =>
-                  setMobileBusinessOpen((prev) => !prev)
-                }
+                onClick={() => {
+                  // If dropdown is already open, scroll to business-tools instead
+                  if (mobileBusinessOpen) {
+                    closeMobileMenu();
+                    document.getElementById('business-tools')?.scrollIntoView({ behavior: 'smooth' });
+                  } else {
+                    setMobileBusinessOpen(true);
+                  }
+                }}
               >
                 {t.mobile.businessperson} ▾
               </button>
@@ -817,26 +858,33 @@ function App() {
                   mobileBusinessOpen ? "open" : ""
                 }`}
               >
-                <button className="mobile-dropdown-item">
+                <button className="mobile-dropdown-item" onClick={() => { closeMobileMenu(); setBusinessToolId(1); setCurrentPage('businessToolDetail'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
                   {t.businessperson.businessPlan}
                 </button>
-                <button className="mobile-dropdown-item">
+                <button className="mobile-dropdown-item" onClick={() => { closeMobileMenu(); setBusinessToolId(2); setCurrentPage('businessToolDetail'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
                   {t.businessperson.onlineMarketing}
                 </button>
-                <button className="mobile-dropdown-item">
+                <button className="mobile-dropdown-item" onClick={() => { closeMobileMenu(); setBusinessToolId(3); setCurrentPage('businessToolDetail'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
                   {t.businessperson.calendar}
                 </button>
-                <button className="mobile-dropdown-item">
+                <button className="mobile-dropdown-item" onClick={() => { closeMobileMenu(); setBusinessToolId(4); setCurrentPage('businessToolDetail'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
                   {t.businessperson.promotions}
                 </button>
-                <button className="mobile-dropdown-item">
+                <button className="mobile-dropdown-item" onClick={() => { closeMobileMenu(); setBusinessToolId(5); setCurrentPage('businessToolDetail'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
                   {t.businessperson.lectureGuide}
                 </button>
-                <button className="mobile-dropdown-item">
+                <button className="mobile-dropdown-item" onClick={() => { closeMobileMenu(); setBusinessToolId(6); setCurrentPage('businessToolDetail'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
                   {t.businessperson.travelRewards}
                 </button>
               </div>
             </div>
+
+            <button 
+              className={`mobile-link ${activeMobileLink === "ABOUT US" ? "mobile-link-active" : ""}`}
+              onClick={() => { setActiveMobileLink("ABOUT US"); closeMobileMenu(); setCurrentPage("about"); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+            >
+              {t.mobile.aboutUs}
+            </button>
 
             <button 
               className={`mobile-link ${activeMobileLink === "CONTACT US" ? "mobile-link-active" : ""}`}
@@ -848,12 +896,12 @@ function App() {
 
           {/* ปุ่มด้านล่าง */}
           <div className="mobile-menu-buttons">
-            <button className="btn-outline-mobile">
+            <a href="https://www.happympm.com/EROOM/form-login.php" target="_blank" rel="noopener noreferrer" className="btn-outline-mobile">
               {t.mobile.onlineClassroom}
-            </button>
-            <button className="btn-solid-mobile">
+            </a>
+            <a href="https://www.myhmpm.com/member/index.php" target="_blank" rel="noopener noreferrer" className="btn-solid-mobile">
               {t.mobile.logIn}
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -872,7 +920,7 @@ function App() {
       </main>
 
       {/* QUALITY PRODUCTS SECTION */}
-      <section className="products-section">
+      <section className="products-section" id="products">
         <div className="container">
           <h2 className="products-title">
             {t.productsSection.title}
@@ -964,7 +1012,7 @@ function App() {
       </section>
 
       {/* PROMOTIONS SECTION */}
-      <section className="promotions-section">
+      <section className="promotions-section" id="promotions">
         <div className="container">
           <div className="promotions-header">
             <h2 className="promotions-title">{t.promotions.title}</h2>
@@ -1081,7 +1129,7 @@ function App() {
       </section>
 
       {/* JOIN OUR BUSINESS SECTION */}
-      <section className="join-business-section">
+      <section className="join-business-section" id="join-business">
         <div className="container">
           <div className="join-business-header">
             <div className="join-business-title-wrapper">
@@ -1209,13 +1257,19 @@ function App() {
       </section>
 
       {/* News & Articles Section */}
-      <NewsArticles language={language} t={t} />
+      <div id="news-articles">
+        <NewsArticles language={language} t={t} />
+      </div>
 
       {/* Business Tools Section */}
-      <BusinessTools language={language} t={t} />
+      <div id="business-tools">
+        <BusinessTools language={language} t={t} setCurrentPage={setCurrentPage} setBusinessToolId={setBusinessToolId} />
+      </div>
 
       {/* Contact Us Section */}
-      <ContactUs language={language} t={t} />
+      <div id="contact-us">
+        <ContactUs language={language} t={t} />
+      </div>
 
       {/* Footer */}
       <Footer language={language} t={t} />
@@ -1228,6 +1282,8 @@ function App() {
       >
         ↑
       </button>
+      </>
+      )}
     </div>
   );
 }

@@ -1,4 +1,4 @@
-/* ---------- GLOBAL ---------- */
+ /* ---------- GLOBAL ---------- */
 * {
   margin: 0;
   padding: 0;
@@ -34,7 +34,8 @@ body {
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 32px;
+  padding: 0 16px;
+  width: 100%;
 }
 
 @media (min-width: 1920px) {
@@ -74,7 +75,7 @@ body {
 }
 
 .top-left-links a:hover {
-  text-decoration: underline;
+  color: #ffcc00;
 }
 
 .top-right-info {
@@ -326,6 +327,7 @@ body {
   background-color: #ffffff;
   color: #0043a8;
   border-color: #0043a8;
+  text-decoration: none;
 }
 
 .btn-outline:hover {
@@ -333,12 +335,14 @@ body {
   color: #ffffff;
   box-shadow: 0 8px 18px rgba(0, 67, 168, 0.25);
   transform: translateY(-1px);
+  text-decoration: none;
 }
 
 .btn-solid {
   background-color: #0043a8;
   color: #ffffff;
   border-color: #0043a8;
+  text-decoration: none;
 }
 
 .btn-solid:hover {
@@ -346,6 +350,7 @@ body {
   color: #0043a8;
   box-shadow: 0 8px 18px rgba(0, 67, 168, 0.25);
   transform: translateY(-1px);
+  text-decoration: none;
 }
 
 /* ---------- HAMBURGER (MOBILE BUTTON) ---------- */
@@ -783,6 +788,7 @@ body {
 .btn-outline-mobile {
   background: #ffffff;
   color: #0043a8;
+  text-decoration: none;
 }
 
 .btn-outline-mobile:hover,
@@ -790,11 +796,13 @@ body {
   background: #f0f0f0;
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(0, 67, 168, 0.3);
+  text-decoration: none;
 }
 
 .btn-solid-mobile {
   background: #0043a8;
   color: #ffffff;
+  text-decoration: none;
 }
 
 .btn-solid-mobile:hover,
@@ -802,6 +810,7 @@ body {
   background: #0058d6;
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(0, 67, 168, 0.4);
+  text-decoration: none;
 }
 
 /* ---------- HERO ---------- */

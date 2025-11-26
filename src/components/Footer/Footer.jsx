@@ -18,37 +18,37 @@ const Footer = ({ language, t }) => {
 
           {/* Quick Links */}
           <div className="footer-section">
-            <h4 className="footer-title">Quick Links</h4>
+            <h4 className="footer-title">{t.footer.quickLinks}</h4>
             <ul className="footer-links">
-              <li><a href="#">About Happy MPM</a></li>
-              <li><a href="#">Join Our Business</a></li>
-              <li><a href="#">News & Articles</a></li>
-              <li><a href="#">FAQ</a></li>
-              <li><a href="#">Contact Us</a></li>
+              <li><a href="#about">{t.footer.aboutCompany}</a></li>
+              <li><a href="#join-business">{t.joinBusiness.title}</a></li>
+              <li><a href="#news-articles">{t.newsArticles.title}</a></li>
+              <li><a href="#">{t.footer.faq}</a></li>
+              <li><a href="#contact-us">{t.contactUs.title}</a></li>
             </ul>
           </div>
 
           {/* Support */}
           <div className="footer-section">
-            <h4 className="footer-title">Support</h4>
+            <h4 className="footer-title">{t.footer.support}</h4>
             <ul className="footer-links">
-              <li><a href="#">Privacy Policy</a></li>
-              <li><a href="#">Terms & Conditions</a></li>
-              <li><a href="#">FAQ</a></li>
-              <li><a href="#">Feedback</a></li>
-              <li><a href="#">Branch Locations</a></li>
+              <li><a href="#">{t.footer.privacy}</a></li>
+              <li><a href="#">{t.footer.terms}</a></li>
+              <li><a href="#">{t.footer.faq}</a></li>
+              <li><a href="#">{t.footer.contactSupport}</a></li>
+              <li><a href="#">{t.footer.branches}</a></li>
             </ul>
           </div>
 
           {/* Products */}
           <div className="footer-section">
-            <h4 className="footer-title">Product</h4>
+            <h4 className="footer-title">{t.footer.productsFooter}</h4>
             <ul className="footer-links">
-              <li><a href="#">Health</a></li>
-              <li><a href="#">Health & Wellness Solutions</a></li>
-              <li><a href="#">Beauty & Body Care</a></li>
-              <li><a href="#">Supplement Set (CR)</a></li>
-              <li><a href="#">Agriculture & Equipment</a></li>
+              <li><a href="#products">{t.products.pollitin}</a></li>
+              <li><a href="#products">{t.products.healthWellness}</a></li>
+              <li><a href="#products">{t.products.beautyBody}</a></li>
+              <li><a href="#products">{t.products.onlineMembership}</a></li>
+              <li><a href="#products">{t.products.agriculture}</a></li>
             </ul>
           </div>
 
@@ -76,7 +76,7 @@ const Footer = ({ language, t }) => {
       <div className="footer-bottom">
         <div className="container">
           <p className="footer-copyright">
-            © 2025 Happy MPM Co., Ltd. All Rights Reserved.
+            {t.footer.copyright}
           </p>
         </div>
       </div>

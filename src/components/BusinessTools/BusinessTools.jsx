@@ -2,51 +2,69 @@ import React from "react";
 import "./businessTools.css";
 import { MdAssignmentTurnedIn, MdPublic, MdCalendarToday, MdPeople, MdMenuBook, MdCardTravel } from "react-icons/md";
 
-const BusinessTools = ({ language, t }) => {
+const BusinessTools = ({ language, t, setCurrentPage, setBusinessToolId }) => {
   const tools = [
     {
       id: 1,
       icon: MdAssignmentTurnedIn,
-      title: "Business Plan",
-      description: "Your business roadmap",
+      title: t.businessTools.tools.tool1.title,
+      description: t.businessTools.tools.tool1.description,
       buttonText: "Details",
+      hasDetail: true,
     },
     {
       id: 2,
       icon: MdPublic,
-      title: "Online Marketing Regulations",
-      description: "Safe & smart online selling",
+      title: t.businessTools.tools.tool2.title,
+      description: t.businessTools.tools.tool2.description,
       buttonText: "Details",
+      hasDetail: true,
     },
     {
       id: 3,
       icon: MdCalendarToday,
-      title: "Calendar of Events",
-      description: "Upcoming trainings & activities",
+      title: t.businessTools.tools.tool3.title,
+      description: t.businessTools.tools.tool3.description,
       buttonText: "Details",
+      hasDetail: true,
     },
     {
       id: 4,
       icon: MdPeople,
-      title: "Partner Promotions",
-      description: "Exclusive rewards for partners",
+      title: t.businessTools.tools.tool4.title,
+      description: t.businessTools.tools.tool4.description,
       buttonText: "Details",
+      hasDetail: true,
     },
     {
       id: 5,
       icon: MdMenuBook,
-      title: "Lecture Guide",
-      description: "Essential learning resources",
+      title: t.businessTools.tools.tool5.title,
+      description: t.businessTools.tools.tool5.description,
       buttonText: "Details",
+      hasDetail: true,
     },
     {
       id: 6,
       icon: MdCardTravel,
-      title: "Travel Rewards",
-      description: "Qualification & trip details",
+      title: t.businessTools.tools.tool6.title,
+      description: t.businessTools.tools.tool6.description,
       buttonText: "Details",
+      hasDetail: true,
     },
   ];
+
+  const handleToolClick = (tool) => {
+    if (tool.hasDetail) {
+      setBusinessToolId(tool.id);
+      window.scrollTo(0, 0);
+      setTimeout(() => {
+        setCurrentPage("businessToolDetail");
+      }, 0);
+    } else if (tool.externalLink) {
+      window.open(tool.externalLink, "_blank");
+    }
+  };
 
   return (
     <section className="business-tools-section">
@@ -64,24 +82,24 @@ const BusinessTools = ({ language, t }) => {
           {/* Header */}
           <div className="business-tools-header">
             <h1 className="business-tools-title">
-              Grow Your Business With Happy MPM
+              {t.businessTools.title}
             </h1>
             <p className="business-tools-subtitle">
-              Tools, training, and opportunities designed for modern entrepreneurs.
+              {t.businessTools.subtitle}
             </p>
           </div>
 
           {/* Description */}
           <p className="business-tools-description">
-            For over two decades, Happy MPM Co., Ltd. has implemented our core philosophy "Quality Leads Business." All of our policies are based on creating maximum benefit for society, while also continuously developing and growing our business. As a leader in the health and beauty network, we select natural ingredients that have undergone international research and development, and are certified for product quality standards by various institutions around the world.
+            {t.businessTools.description}
           </p>
 
           {/* Action Buttons */}
           <div className="business-tools-actions">
             <button className="btn-start-business">
-              Start Your Business <span>→</span>
+              {t.businessTools.startBusiness} <span>→</span>
             </button>
-            <button className="btn-explore-tools">Explore Tools</button>
+            <button className="btn-explore-tools">{t.businessTools.exploreTools}</button>
           </div>
 
           {/* Tools Grid */}
@@ -96,7 +114,12 @@ const BusinessTools = ({ language, t }) => {
                   </div>
                   <h3 className="tool-title">{tool.title}</h3>
                   <p className="tool-description">{tool.description}</p>
-                  <button className="tool-button">{tool.buttonText} →</button>
+                  <button 
+                    className="tool-button"
+                    onClick={() => handleToolClick(tool)}
+                  >
+                    {tool.buttonText} →
+                  </button>
                 </div>
               );
             })}
