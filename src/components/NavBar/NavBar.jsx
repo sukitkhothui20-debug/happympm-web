@@ -108,15 +108,17 @@ const NavBar = ({ language, t, setCurrentPage, setLanguage, setBusinessToolId })
                   {t.nav.product}▾
                 </button>
                 <div className="nav-dropdown-menu">
-                  <a href="#" className="dropdown-item" onClick={(e) => { e.preventDefault(); }}>{t.products.pollitin}</a>
-                  <a href="#" className="dropdown-item" onClick={(e) => { e.preventDefault(); }}>{t.products.healthWellness}</a>
-                  <a href="#" className="dropdown-item" onClick={(e) => { e.preventDefault(); }}>{t.products.beautyBody}</a>
-                  <a href="#" className="dropdown-item" onClick={(e) => { e.preventDefault(); }}>{t.products.onlineMembership}</a>
-                  <a href="#" className="dropdown-item" onClick={(e) => { e.preventDefault(); }}>{t.products.agriculture}</a>
+                  <a href="#" className="dropdown-item" onClick={(e) => { e.preventDefault(); document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' }); setDesktopProductOpen(false); }}>{t.products.pollitin}</a>
+                  <a href="#" className="dropdown-item" onClick={(e) => { e.preventDefault(); document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' }); setDesktopProductOpen(false); }}>{t.products.healthWellness}</a>
+                  <a href="#" className="dropdown-item" onClick={(e) => { e.preventDefault(); document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' }); setDesktopProductOpen(false); }}>{t.products.beautyBody}</a>
+                  <a href="#" className="dropdown-item" onClick={(e) => { e.preventDefault(); document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' }); setDesktopProductOpen(false); }}>{t.products.onlineMembership}</a>
+                  <a href="#" className="dropdown-item" onClick={(e) => { e.preventDefault(); document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' }); setDesktopProductOpen(false); }}>{t.products.agriculture}</a>
                 </div>
               </div>
 
-              <a href="#" className="nav-link">{t.nav.news}</a>
+              <a href="#news-articles" className="nav-link" onClick={(e) => { e.preventDefault(); document.getElementById('news-articles')?.scrollIntoView({ behavior: 'smooth' }); }}>
+                {t.nav.news}
+              </a>
 
               <div 
                 className={`nav-dropdown ${desktopBusinessOpen ? "is-open" : ""}`}
@@ -157,7 +159,9 @@ const NavBar = ({ language, t, setCurrentPage, setLanguage, setBusinessToolId })
                 {t.nav.aboutUs || "About Us"}
               </a>
 
-              <a href="#" className="nav-link">{t.nav.contactUs}</a>
+              <a href="#contact-us" className="nav-link" onClick={(e) => { e.preventDefault(); setCurrentPage("home"); document.getElementById('contact-us')?.scrollIntoView({ behavior: 'smooth' }); }}>
+                {t.nav.contactUs}
+              </a>
             </nav>
           </div>
 
@@ -246,15 +250,15 @@ const NavBar = ({ language, t, setCurrentPage, setLanguage, setBusinessToolId })
                 {t.mobile.product} ▾
               </button>
               <div className={`mobile-dropdown-menu ${mobileProductOpen ? "open" : ""}`}>
-                <button className="mobile-dropdown-item" onClick={() => { closeMobileMenu(); }}>{t.products.pollitin}</button>
-                <button className="mobile-dropdown-item" onClick={() => { closeMobileMenu(); }}>{t.products.healthWellness}</button>
-                <button className="mobile-dropdown-item" onClick={() => { closeMobileMenu(); }}>{t.products.beautyBody}</button>
-                <button className="mobile-dropdown-item" onClick={() => { closeMobileMenu(); }}>{t.products.onlineMembership}</button>
-                <button className="mobile-dropdown-item" onClick={() => { closeMobileMenu(); }}>{t.products.agriculture}</button>
+                <button className="mobile-dropdown-item" onClick={() => { closeMobileMenu(); document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' }); }}>{t.products.pollitin}</button>
+                <button className="mobile-dropdown-item" onClick={() => { closeMobileMenu(); document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' }); }}>{t.products.healthWellness}</button>
+                <button className="mobile-dropdown-item" onClick={() => { closeMobileMenu(); document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' }); }}>{t.products.beautyBody}</button>
+                <button className="mobile-dropdown-item" onClick={() => { closeMobileMenu(); document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' }); }}>{t.products.onlineMembership}</button>
+                <button className="mobile-dropdown-item" onClick={() => { closeMobileMenu(); document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' }); }}>{t.products.agriculture}</button>
               </div>
             </div>
 
-            <button className="mobile-link">{t.mobile.newsArticles}</button>
+            <button className="mobile-link" onClick={() => { closeMobileMenu(); document.getElementById('news-articles')?.scrollIntoView({ behavior: 'smooth' }); }}>{t.mobile.newsArticles}</button>
 
             <div className="mobile-dropdown">
               <button
@@ -284,7 +288,7 @@ const NavBar = ({ language, t, setCurrentPage, setLanguage, setBusinessToolId })
             </div>
 
             <button className="mobile-link" onClick={() => { closeMobileMenu(); setCurrentPage("about"); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>{t.mobile.aboutUs || "About Us"}</button>
-            <button className="mobile-link">{t.mobile.contactUs}</button>
+            <button className="mobile-link" onClick={() => { closeMobileMenu(); setCurrentPage("home"); document.getElementById('contact-us')?.scrollIntoView({ behavior: 'smooth' }); }}>{t.mobile.contactUs}</button>
           </nav>
 
           <div className="mobile-menu-footer">
