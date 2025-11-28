@@ -490,6 +490,20 @@ function App() {
     }
   }, [currentPage]);
 
+  // Handle scroll to section from NavBar
+  useEffect(() => {
+    if (currentPage === "home" && sessionStorage.getItem("scrollToSection")) {
+      const sectionId = sessionStorage.getItem("scrollToSection");
+      sessionStorage.removeItem("scrollToSection");
+      setTimeout(() => {
+        const section = document.getElementById(sectionId);
+        if (section) {
+          section.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+    }
+  }, [currentPage]);
+
   return (
     <div className="page">
       {currentPage === "about" && <About language={language} t={t} setCurrentPage={setCurrentPage} setLanguage={setLanguage} setSocialActivityId={setSocialActivityId} setBusinessToolId={setBusinessToolId} />}
