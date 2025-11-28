@@ -81,9 +81,10 @@ const About = ({ language = "th", t, setCurrentPage, setLanguage, setSocialActiv
       <div className="top-bar">
         <div className="container top-bar-inner">
           <div className="top-left-links">
-            <a href="#join-business" onClick={(e) => { e.preventDefault(); setCurrentPage("home"); }}>{t.topBar.startBusiness}</a>
-            <a href="#promotions" onClick={(e) => { e.preventDefault(); setCurrentPage("home"); }}>{t.topBar.memberBenefits}</a>
-            <a href="#contact-us" onClick={(e) => { e.preventDefault(); setCurrentPage("home"); }}>{t.topBar.contact}</a>
+            <a href="#join-business" onClick={(e) => { e.preventDefault(); document.getElementById('join-business')?.scrollIntoView({ behavior: 'smooth' }); }}>{t.topBar.startBusiness}</a>
+            <a href="#promotions" onClick={(e) => { e.preventDefault(); document.getElementById('promotions')?.scrollIntoView({ behavior: 'smooth' }); }}>{t.topBar.memberBenefits}</a>
+            <a href="#contact-us" onClick={(e) => { e.preventDefault(); document.getElementById('contact-us')?.scrollIntoView({ behavior: 'smooth' }); }}>{t.topBar.contact}</a>
+            <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>{t.topBar.about}</a>
           </div>
           <div className="top-right-info">
             <span>{t.topBar.email} info@happympm.com</span>

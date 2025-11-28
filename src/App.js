@@ -692,10 +692,6 @@ function App() {
                 </div>
               </div>
               
-              <a href="#about" className="nav-link" onClick={(e) => { e.preventDefault(); setCurrentPage("about"); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
-                {t.nav.aboutUs || "About Us"}
-              </a>
-
               <a href="#contact-us" className="nav-link" onClick={(e) => { e.preventDefault(); setCurrentPage("home"); document.getElementById('contact-us')?.scrollIntoView({ behavior: 'smooth' }); }}>
                 {t.nav.contactUs}
               </a>
@@ -880,15 +876,8 @@ function App() {
             </div>
 
             <button 
-              className={`mobile-link ${activeMobileLink === "ABOUT US" ? "mobile-link-active" : ""}`}
-              onClick={() => { setActiveMobileLink("ABOUT US"); closeMobileMenu(); setCurrentPage("about"); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-            >
-              {t.mobile.aboutUs}
-            </button>
-
-            <button 
               className={`mobile-link ${activeMobileLink === "CONTACT US" ? "mobile-link-active" : ""}`}
-              onClick={() => setActiveMobileLink("CONTACT US")}
+              onClick={() => { setActiveMobileLink("CONTACT US"); closeMobileMenu(); setCurrentPage("home"); document.getElementById('contact-us')?.scrollIntoView({ behavior: 'smooth' }); }}
             >
               {t.mobile.contactUs}
             </button>
