@@ -201,15 +201,15 @@ const SocialActivityDetail = ({ activity = 1, language = "th", t, setCurrentPage
                     }
                   }}
                 >
-                  <a href="#" className="dropdown-item" onClick={(e) => { e.preventDefault(); setCurrentPage("home"); setDesktopProductOpen(false); }}>{t.products.pollitin}</a>
-                  <a href="#" className="dropdown-item" onClick={(e) => { e.preventDefault(); setCurrentPage("home"); setDesktopProductOpen(false); }}>{t.products.healthWellness}</a>
-                  <a href="#" className="dropdown-item" onClick={(e) => { e.preventDefault(); setCurrentPage("home"); setDesktopProductOpen(false); }}>{t.products.beautyBody}</a>
-                  <a href="#" className="dropdown-item" onClick={(e) => { e.preventDefault(); setCurrentPage("home"); setDesktopProductOpen(false); }}>{t.products.onlineMembership}</a>
-                  <a href="#" className="dropdown-item" onClick={(e) => { e.preventDefault(); setCurrentPage("home"); setDesktopProductOpen(false); }}>{t.products.agriculture}</a>
+                  <a href="#" className="dropdown-item" onClick={(e) => { e.preventDefault(); sessionStorage.setItem("scrollToSection", "products"); setCurrentPage("home"); setDesktopProductOpen(false); }}>{t.products.pollitin}</a>
+                  <a href="#" className="dropdown-item" onClick={(e) => { e.preventDefault(); sessionStorage.setItem("scrollToSection", "products"); setCurrentPage("home"); setDesktopProductOpen(false); }}>{t.products.healthWellness}</a>
+                  <a href="#" className="dropdown-item" onClick={(e) => { e.preventDefault(); sessionStorage.setItem("scrollToSection", "products"); setCurrentPage("home"); setDesktopProductOpen(false); }}>{t.products.beautyBody}</a>
+                  <a href="#" className="dropdown-item" onClick={(e) => { e.preventDefault(); sessionStorage.setItem("scrollToSection", "products"); setCurrentPage("home"); setDesktopProductOpen(false); }}>{t.products.onlineMembership}</a>
+                  <a href="#" className="dropdown-item" onClick={(e) => { e.preventDefault(); sessionStorage.setItem("scrollToSection", "products"); setCurrentPage("home"); setDesktopProductOpen(false); }}>{t.products.agriculture}</a>
                 </div>
               </div>
 
-              <a href="#" className="nav-link" onClick={(e) => { e.preventDefault(); setCurrentPage("home"); }}>
+              <a href="#" className="nav-link" onClick={(e) => { e.preventDefault(); sessionStorage.setItem("scrollToSection", "news-articles"); setCurrentPage("home"); }}>
                 {t.nav.news}
               </a>
 
@@ -230,11 +230,8 @@ const SocialActivityDetail = ({ activity = 1, language = "th", t, setCurrentPage
                   className="nav-link nav-link-button"
                   onClick={(e) => {
                     e.preventDefault();
-                    // Scroll to business-tools section in home page
+                    sessionStorage.setItem("scrollToSection", "business-tools");
                     setCurrentPage("home");
-                    setTimeout(() => {
-                      document.getElementById('business-tools')?.scrollIntoView({ behavior: 'smooth' });
-                    }, 0);
                   }}
                 >
                   {t.nav.businessperson}▾
@@ -261,7 +258,7 @@ const SocialActivityDetail = ({ activity = 1, language = "th", t, setCurrentPage
                 </div>
               </div>
 
-              <a href="#" className="nav-link" onClick={(e) => { e.preventDefault(); setCurrentPage("home"); }}>
+              <a href="#" className="nav-link" onClick={(e) => { e.preventDefault(); sessionStorage.setItem("scrollToSection", "contact-us"); setCurrentPage("home"); }}>
                 {t.nav.contactUs}
               </a>
             </nav>
@@ -350,18 +347,18 @@ const SocialActivityDetail = ({ activity = 1, language = "th", t, setCurrentPage
               </button>
               {mobileProductOpen && (
                 <div className="mobile-dropdown-menu">
-                  <a href="#" className="mobile-dropdown-item" onClick={(e) => { e.preventDefault(); closeMobileMenu(); setCurrentPage("home"); }}>{t.products.pollitin}</a>
-                  <a href="#" className="mobile-dropdown-item" onClick={(e) => { e.preventDefault(); closeMobileMenu(); setCurrentPage("home"); }}>{t.products.healthWellness}</a>
-                  <a href="#" className="mobile-dropdown-item" onClick={(e) => { e.preventDefault(); closeMobileMenu(); setCurrentPage("home"); }}>{t.products.beautyBody}</a>
-                  <a href="#" className="mobile-dropdown-item" onClick={(e) => { e.preventDefault(); closeMobileMenu(); setCurrentPage("home"); }}>{t.products.onlineMembership}</a>
-                  <a href="#" className="mobile-dropdown-item" onClick={(e) => { e.preventDefault(); closeMobileMenu(); setCurrentPage("home"); }}>{t.products.agriculture}</a>
+                  <a href="#" className="mobile-dropdown-item" onClick={(e) => { e.preventDefault(); closeMobileMenu(); sessionStorage.setItem("scrollToSection", "products"); setCurrentPage("home"); }}>{t.products.pollitin}</a>
+                  <a href="#" className="mobile-dropdown-item" onClick={(e) => { e.preventDefault(); closeMobileMenu(); sessionStorage.setItem("scrollToSection", "products"); setCurrentPage("home"); }}>{t.products.healthWellness}</a>
+                  <a href="#" className="mobile-dropdown-item" onClick={(e) => { e.preventDefault(); closeMobileMenu(); sessionStorage.setItem("scrollToSection", "products"); setCurrentPage("home"); }}>{t.products.beautyBody}</a>
+                  <a href="#" className="mobile-dropdown-item" onClick={(e) => { e.preventDefault(); closeMobileMenu(); sessionStorage.setItem("scrollToSection", "products"); setCurrentPage("home"); }}>{t.products.onlineMembership}</a>
+                  <a href="#" className="mobile-dropdown-item" onClick={(e) => { e.preventDefault(); closeMobileMenu(); sessionStorage.setItem("scrollToSection", "products"); setCurrentPage("home"); }}>{t.products.agriculture}</a>
                 </div>
               )}
             </div>
 
             <button 
               className="mobile-link"
-              onClick={() => { closeMobileMenu(); setCurrentPage("home"); }}
+              onClick={() => { closeMobileMenu(); sessionStorage.setItem("scrollToSection", "news-articles"); setCurrentPage("home"); }}
             >
               {t.mobile.news}
             </button>
@@ -370,13 +367,10 @@ const SocialActivityDetail = ({ activity = 1, language = "th", t, setCurrentPage
               <button
                 className="mobile-link"
                 onClick={() => {
-                  // If dropdown is already open, scroll to business-tools section in home page
                   if (mobileBusinessOpen) {
                     closeMobileMenu();
+                    sessionStorage.setItem("scrollToSection", "business-tools");
                     setCurrentPage("home");
-                    setTimeout(() => {
-                      document.getElementById('business-tools')?.scrollIntoView({ behavior: 'smooth' });
-                    }, 0);
                   } else {
                     setMobileBusinessOpen(true);
                   }

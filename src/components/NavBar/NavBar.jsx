@@ -155,10 +155,6 @@ const NavBar = ({ language, t, setCurrentPage, setLanguage, setBusinessToolId })
                 </div>
               </div>
               
-              <a href="#" className="nav-link" onClick={(e) => { e.preventDefault(); setCurrentPage("about"); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
-                {t.nav.aboutUs || "About Us"}
-              </a>
-
               <a href="#contact-us" className="nav-link" onClick={(e) => { e.preventDefault(); sessionStorage.setItem("scrollToSection", "contact-us"); setCurrentPage("home"); }}>
                 {t.nav.contactUs}
               </a>
@@ -287,7 +283,6 @@ const NavBar = ({ language, t, setCurrentPage, setLanguage, setBusinessToolId })
               </div>
             </div>
 
-            <button className="mobile-link" onClick={() => { closeMobileMenu(); setCurrentPage("about"); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>{t.mobile.aboutUs || "About Us"}</button>
             <button className="mobile-link" onClick={() => { closeMobileMenu(); sessionStorage.setItem("scrollToSection", "contact-us"); setCurrentPage("home"); }}>{t.mobile.contactUs}</button>
           </nav>
 

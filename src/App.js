@@ -842,7 +842,7 @@ function App() {
 
             <button 
               className={`mobile-link ${activeMobileLink === "NEWS & ARTICLES" ? "mobile-link-active" : ""}`}
-              onClick={() => setActiveMobileLink("NEWS & ARTICLES")}
+              onClick={() => { setActiveMobileLink("NEWS & ARTICLES"); closeMobileMenu(); document.getElementById('news-articles')?.scrollIntoView({ behavior: 'smooth' }); }}
             >
               {t.mobile.newsArticles}
             </button>
